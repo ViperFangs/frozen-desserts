@@ -25,10 +25,13 @@ ami = ec2.get_ami(most_recent=True,
 user_data = r'''#!/bin/bash
 set -e
 
+# Log output to file for troubleshooting
+exec > >(tee /var/log/user-data.log|logger -t user-data -s 2>/dev/console) 2>&1
+
 # Update and install necessary packages
-sudo yum update -y
-sudo amazon-linux-extras install nginx1 -y
-sudo yum install -y git gcc make curl gpg
+yum update -y
+amazon-linux-extras install nginx1 -y
+yum install -y git gcc make curl gpg
 
 # Install RVM and Ruby 3.2.1
 gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
@@ -37,12 +40,20 @@ source /etc/profile.d/rvm.sh
 rvm install 3.2.1
 rvm use 3.2.1 --default
 
+# Add the following to the .bashrc of the root and ec2-user to ensure RVM is loaded
+echo "source /etc/profile.d/rvm.sh" >> /root/.bashrc
+echo "source /etc/profile.d/rvm.sh" >> /home/ec2-user/.bashrc
+
+# Make sure the changes are applied for the current session
+source /root/.bashrc
+source /home/ec2-user/.bashrc
+
 # Install Bundler and Rails
 gem install bundler
 gem install rails -v 7.0.8.1
 
 # Clone the application repository
-sudo git clone https://github.com/viperfangs/frozen-desserts.git /var/www/frozen-desserts
+git clone https://github.com/viperfangs/frozen-desserts.git /var/www/frozen-desserts
 
 # Set up the application
 cd /var/www/frozen-desserts
@@ -57,7 +68,7 @@ RAILS_ENV=production bundle exec rails db:create
 RAILS_ENV=production bundle exec rails db:migrate
 
 # Configure Nginx
-sudo bash -c 'cat > /etc/nginx/conf.d/frozen-desserts.conf <<EOF
+cat > /etc/nginx/conf.d/frozen-desserts.conf <<EOF
 server {
     listen 80;
     server_name _;
@@ -76,16 +87,36 @@ server {
     client_max_body_size 4G;
     keepalive_timeout 10;
 }
-EOF'
+EOF
+
+# Test Nginx configuration
+nginx -t
 
 # Start Nginx
-sudo systemctl enable nginx
-sudo systemctl start nginx
+systemctl enable nginx
+systemctl start nginx
+
+# Ensure Nginx is active
+if systemctl is-active --quiet nginx; then
+    echo "Nginx started successfully."
+else
+    echo "Nginx failed to start. Check logs for details."
+    exit 1
+fi
 
 # Start the Rails server with logging
-bash -c 'cd /var/www/frozen-desserts && RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000 > /var/log/rails.log 2>&1 &'
-'''
+cd /var/www/frozen-desserts
+RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000 > /var/log/rails.log 2>&1 &
 
+# Ensure Rails server is running
+sleep 5
+if pgrep -f "rails server" > /dev/null; then
+    echo "Rails server started successfully."
+else
+    echo "Rails server failed to start. Check logs for details."
+    exit 1
+fi
+'''
 
 # Create an EC2 instance
 server = ec2.Instance('web-server-www',
