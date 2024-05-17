@@ -23,23 +23,38 @@ ami = ec2.get_ami(most_recent=True,
 
 # User data script to set up the server
 user_data = r'''#!/bin/bash
+set -e
+
+# Update and install necessary packages
 sudo yum update -y
 sudo amazon-linux-extras install nginx1 -y
-sudo yum install -y ruby git
+sudo yum install -y git gcc make curl gpg
 
-# Install Rails and Bundler
-gem install rails bundler
+# Install RVM and Ruby 3.2.1
+gpg --keyserver hkp://keyserver.ubuntu.com --recv-keys 409B6B1796C275462A1703113804BB82D39DC0E3 7D2BAF1CF37B13E2069D6956105BD0E739499BDB
+curl -sSL https://get.rvm.io | bash -s stable
+source /etc/profile.d/rvm.sh
+rvm install 3.2.1
+rvm use 3.2.1 --default
+
+# Install Bundler and Rails
+gem install bundler
+gem install rails
 
 # Clone the application repository
 sudo git clone https://github.com/viperfangs/frozen-desserts.git /var/www/frozen-desserts
 
 # Set up the application
 cd /var/www/frozen-desserts
-sudo bundle install
-sudo yarn install
-sudo RAILS_ENV=production rails db:create
-sudo RAILS_ENV=production rails db:migrate
-sudo RAILS_ENV=production rails assets:precompile
+bundle install
+yarn install
+
+# Precompile assets
+RAILS_ENV=production bundle exec rails assets:precompile
+
+# Set up the database
+RAILS_ENV=production bundle exec rails db:create
+RAILS_ENV=production bundle exec rails db:migrate
 
 # Configure Nginx
 sudo bash -c 'cat > /etc/nginx/conf.d/frozen-desserts.conf <<EOF
@@ -67,9 +82,10 @@ EOF'
 sudo systemctl enable nginx
 sudo systemctl start nginx
 
-# Start the Rails server
-sudo bash -c 'RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000 &'
+# Start the Rails server with logging
+bash -c 'cd /var/www/frozen-desserts && RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000 > /var/log/rails.log 2>&1 &'
 '''
+
 
 # Create an EC2 instance
 server = ec2.Instance('web-server-www',
