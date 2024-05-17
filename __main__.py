@@ -6,10 +6,11 @@ bucket = s3.Bucket('frozen-desserts-bucket')
 
 # Create a security group for the EC2 instance
 security_group = ec2.SecurityGroup('web-secgrp',
-    description='Enable HTTP and HTTPS access',
+    description='Enable HTTP, HTTPS, and SSH access',
     ingress=[
         {'protocol': 'tcp', 'from_port': 80, 'to_port': 80, 'cidr_blocks': ['0.0.0.0/0']},
-        {'protocol': 'tcp', 'from_port': 443, 'to_port': 443, 'cidr_blocks': ['0.0.0.0/0']}
+        {'protocol': 'tcp', 'from_port': 443, 'to_port': 443, 'cidr_blocks': ['0.0.0.0/0']},
+        {'protocol': 'tcp', 'from_port': 22, 'to_port': 22, 'cidr_blocks': ['0.0.0.0/0']}
     ],
     egress=[
         {'protocol': '-1', 'from_port': 0, 'to_port': 0, 'cidr_blocks': ['0.0.0.0/0']}
@@ -21,50 +22,53 @@ ami = ec2.get_ami(most_recent=True,
                   filters=[{"name": "name", "values": ["amzn2-ami-hvm-*-x86_64-gp2"]}])
 
 # User data script to set up the server
-user_data = '''#!/bin/bash
+user_data = r'''#!/bin/bash
 sudo yum update -y
-sudo yum install -y ruby git httpd epel-release
-sudo curl --fail -sSL https://rpm.nodesource.com/setup_14.x | sudo bash -
-sudo curl --fail -sSL https://oss-binaries.phusionpassenger.com/yum/defs/el7/x86_64/passenger-release.repo -o /etc/yum.repos.d/passenger.repo
-sudo yum install -y nginx passenger
-sudo yum install -y mod_passenger
+sudo amazon-linux-extras install nginx1 -y
+sudo yum install -y ruby git
 
-# Create Apache configuration for the Rails application
-cat <<EOL | sudo tee /etc/httpd/conf.d/frozen-desserts.conf
-LoadModule passenger_module /usr/lib/ruby/gems/2.7.0/gems/passenger-6.0.10/buildout/apache2/mod_passenger.so
-<IfModule mod_passenger.c>
-  PassengerRoot /usr/lib/ruby/gems/2.7.0/gems/passenger-6.0.10
-  PassengerDefaultRuby /usr/bin/ruby
-</IfModule>
-
-<VirtualHost *:80>
-  DocumentRoot /var/www/frozen-desserts/public
-
-  <Directory /var/www/frozen-desserts/public>
-    AllowOverride all
-    Require all granted
-    Options -MultiViews
-  </Directory>
-</VirtualHost>
-EOL
+# Install Rails and Bundler
+gem install rails bundler
 
 # Clone the application repository
 sudo git clone https://github.com/viperfangs/frozen-desserts.git /var/www/frozen-desserts
 
-# Install Ruby gems
+# Set up the application
 cd /var/www/frozen-desserts
-sudo gem install bundler
 sudo bundle install
-
-# Set up the database
+sudo yarn install
 sudo RAILS_ENV=production rails db:create
 sudo RAILS_ENV=production rails db:migrate
-
-# Precompile assets
 sudo RAILS_ENV=production rails assets:precompile
 
-# Restart Apache
-sudo systemctl restart httpd
+# Configure Nginx
+sudo bash -c 'cat > /etc/nginx/conf.d/frozen-desserts.conf <<EOF
+server {
+    listen 80;
+    server_name _;
+
+    root /var/www/frozen-desserts/public;
+
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        proxy_set_header Host \$host;
+        proxy_set_header X-Real-IP \$remote_addr;
+        proxy_set_header X-Forwarded-For \$proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto \$scheme;
+    }
+
+    error_page 500 502 503 504 /500.html;
+    client_max_body_size 4G;
+    keepalive_timeout 10;
+}
+EOF'
+
+# Start Nginx
+sudo systemctl enable nginx
+sudo systemctl start nginx
+
+# Start the Rails server
+sudo bash -c 'RAILS_ENV=production bundle exec rails server -b 0.0.0.0 -p 3000 &'
 '''
 
 # Create an EC2 instance
