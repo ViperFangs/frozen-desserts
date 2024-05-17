@@ -55,6 +55,8 @@ jobs:
           aws-region: us-west-1
 
       - name: Select Pulumi stack
+        env:
+          PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
         run: pulumi stack select dev || pulumi stack init dev
 
       - name: Deploy with Pulumi
