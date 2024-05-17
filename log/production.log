@@ -1,0 +1,179 @@
+W, [2024-05-16T17:30:22.227768 #84644]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:30:38.898358 #84959]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:30:40.003364 #85246]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:31:53.871142 #85316]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:31:57.824126 #85337]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:32:46.873623 #85375]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:33:04.038376 #85437]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:50:45.867649 #86396]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+I, [2024-05-16T17:50:54.797264 #86396]  INFO -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad] Started GET "/" for 127.0.0.1 at 2024-05-16 17:50:54 -0700
+I, [2024-05-16T17:50:54.800271 #86396]  INFO -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad] Processing by DessertsController#index as HTML
+I, [2024-05-16T17:50:54.816940 #86396]  INFO -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad]   Rendered desserts/index.html.erb within layouts/application (Duration: 11.3ms | Allocations: 2879)
+I, [2024-05-16T17:50:54.817048 #86396]  INFO -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad]   Rendered layout layouts/application.html.erb (Duration: 11.5ms | Allocations: 2934)
+I, [2024-05-16T17:50:54.817162 #86396]  INFO -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad] Completed 500 Internal Server Error in 17ms (ActiveRecord: 2.0ms | Allocations: 4608)
+F, [2024-05-16T17:50:54.817524 #86396] FATAL -- : [c82a1127-169a-4a3b-8277-09e049a9f9ad]   
+[c82a1127-169a-4a3b-8277-09e049a9f9ad] ActionView::Template::Error (SQLite3::SQLException: no such table: desserts):
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     3: <h1>Desserts</h1>
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     4: 
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     5: <div id="desserts">
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     6:   <% @desserts.each do |dessert| %>
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     7:     <%= render dessert %>
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     8:     <p>
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]     9:       <%= link_to "Show this dessert", dessert %>
+[c82a1127-169a-4a3b-8277-09e049a9f9ad]   
+[c82a1127-169a-4a3b-8277-09e049a9f9ad] app/views/desserts/index.html.erb:6
+I, [2024-05-16T17:50:54.953005 #86396]  INFO -- : [4cc79708-ba65-4acf-92b4-d0b8b7184932] Started GET "/favicon.ico" for 127.0.0.1 at 2024-05-16 17:50:54 -0700
+F, [2024-05-16T17:50:54.953435 #86396] FATAL -- : [4cc79708-ba65-4acf-92b4-d0b8b7184932]   
+[4cc79708-ba65-4acf-92b4-d0b8b7184932] ActionController::RoutingError (No route matches [GET] "/favicon.ico"):
+[4cc79708-ba65-4acf-92b4-d0b8b7184932]   
+W, [2024-05-16T17:51:35.951466 #87063]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:51:55.353336 #87109]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+I, [2024-05-16T17:51:55.372672 #87109]  INFO -- : Migrating to CreateDesserts (20230418000734)
+I, [2024-05-16T17:51:55.375392 #87109]  INFO -- : Migrating to CreateToppings (20230418000809)
+W, [2024-05-16T17:51:59.324693 #87131]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+I, [2024-05-16T17:52:03.244938 #87131]  INFO -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11] Started GET "/" for 127.0.0.1 at 2024-05-16 17:52:03 -0700
+I, [2024-05-16T17:52:03.248223 #87131]  INFO -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11] Processing by DessertsController#index as HTML
+I, [2024-05-16T17:52:03.263505 #87131]  INFO -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]   Rendered desserts/index.html.erb within layouts/application (Duration: 8.7ms | Allocations: 1937)
+I, [2024-05-16T17:52:03.265560 #87131]  INFO -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]   Rendered layout layouts/application.html.erb (Duration: 10.9ms | Allocations: 2633)
+I, [2024-05-16T17:52:03.265758 #87131]  INFO -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11] Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.8ms | Allocations: 4244)
+F, [2024-05-16T17:52:03.266380 #87131] FATAL -- : [2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]   
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11] ActionView::Template::Error (The asset "application.css" is not present in the asset pipeline.
+):
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]      6:     <%= csrf_meta_tags %>
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]      7:     <%= csp_meta_tag %>
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]      8: 
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]      9:     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]     10:     <%= javascript_importmap_tags %>
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]     11:   </head>
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]     12: 
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11]   
+[2a1b9663-fa8a-4bb7-88b1-d9e36e2aaa11] app/views/layouts/application.html.erb:9
+W, [2024-05-16T17:53:29.875947 #87202]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+W, [2024-05-16T17:53:59.705953 #87282]  WARN -- : You are running SQLite in production, this is generally not recommended. You can disable this warning by setting "config.active_record.sqlite3_production_warning=false".
+I, [2024-05-16T17:54:04.343769 #87282]  INFO -- : [043af53b-f4a6-45e1-bdef-59a927b8593c] Started GET "/" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+I, [2024-05-16T17:54:04.346708 #87282]  INFO -- : [043af53b-f4a6-45e1-bdef-59a927b8593c] Processing by DessertsController#index as HTML
+I, [2024-05-16T17:54:04.367785 #87282]  INFO -- : [043af53b-f4a6-45e1-bdef-59a927b8593c]   Rendered desserts/index.html.erb within layouts/application (Duration: 8.9ms | Allocations: 1936)
+I, [2024-05-16T17:54:04.369986 #87282]  INFO -- : [043af53b-f4a6-45e1-bdef-59a927b8593c]   Rendered layout layouts/application.html.erb (Duration: 11.2ms | Allocations: 4521)
+I, [2024-05-16T17:54:04.370227 #87282]  INFO -- : [043af53b-f4a6-45e1-bdef-59a927b8593c] Completed 200 OK in 23ms (Views: 18.1ms | ActiveRecord: 0.7ms | Allocations: 6188)
+I, [2024-05-16T17:54:04.383690 #87282]  INFO -- : [6e8bd7fa-b73d-49d5-9469-7dd47f4ad069] Started GET "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+F, [2024-05-16T17:54:04.384249 #87282] FATAL -- : [6e8bd7fa-b73d-49d5-9469-7dd47f4ad069]   
+[6e8bd7fa-b73d-49d5-9469-7dd47f4ad069] ActionController::RoutingError (No route matches [GET] "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css"):
+[6e8bd7fa-b73d-49d5-9469-7dd47f4ad069]   
+I, [2024-05-16T17:54:04.387923 #87282]  INFO -- : [827690bd-796d-4fdb-966b-f55167626bff] Started GET "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+F, [2024-05-16T17:54:04.388570 #87282] FATAL -- : [827690bd-796d-4fdb-966b-f55167626bff]   
+[827690bd-796d-4fdb-966b-f55167626bff] ActionController::RoutingError (No route matches [GET] "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js"):
+[827690bd-796d-4fdb-966b-f55167626bff]   
+I, [2024-05-16T17:54:04.389654 #87282]  INFO -- : [791262d1-d8c0-4a45-911c-c95f2d6f63e4] Started GET "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+I, [2024-05-16T17:54:04.389979 #87282]  INFO -- : [16f8b36c-3b5a-4e23-958b-d8a3cbdeb87e] Started GET "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+F, [2024-05-16T17:54:04.390366 #87282] FATAL -- : [16f8b36c-3b5a-4e23-958b-d8a3cbdeb87e]   
+[16f8b36c-3b5a-4e23-958b-d8a3cbdeb87e] ActionController::RoutingError (No route matches [GET] "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js"):
+[16f8b36c-3b5a-4e23-958b-d8a3cbdeb87e]   
+F, [2024-05-16T17:54:04.390203 #87282] FATAL -- : [791262d1-d8c0-4a45-911c-c95f2d6f63e4]   
+[791262d1-d8c0-4a45-911c-c95f2d6f63e4] ActionController::RoutingError (No route matches [GET] "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js"):
+[791262d1-d8c0-4a45-911c-c95f2d6f63e4]   
+I, [2024-05-16T17:54:04.390490 #87282]  INFO -- : [702a8f69-8429-452b-891a-34f95c23a587] Started GET "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+F, [2024-05-16T17:54:04.390914 #87282] FATAL -- : [702a8f69-8429-452b-891a-34f95c23a587]   
+[702a8f69-8429-452b-891a-34f95c23a587] ActionController::RoutingError (No route matches [GET] "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js"):
+[702a8f69-8429-452b-891a-34f95c23a587]   
+I, [2024-05-16T17:54:04.595433 #87282]  INFO -- : [b24e2e9c-82c0-40f7-8dae-569587c99e7a] Started GET "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js" for 127.0.0.1 at 2024-05-16 17:54:04 -0700
+F, [2024-05-16T17:54:04.595952 #87282] FATAL -- : [b24e2e9c-82c0-40f7-8dae-569587c99e7a]   
+[b24e2e9c-82c0-40f7-8dae-569587c99e7a] ActionController::RoutingError (No route matches [GET] "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js"):
+[b24e2e9c-82c0-40f7-8dae-569587c99e7a]   
+I, [2024-05-16T17:54:06.376328 #87282]  INFO -- : [6af76147-60ab-492b-a56d-9267783080fc] Started GET "/desserts/new" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+I, [2024-05-16T17:54:06.377903 #87282]  INFO -- : [6af76147-60ab-492b-a56d-9267783080fc] Processing by DessertsController#new as HTML
+I, [2024-05-16T17:54:06.396647 #87282]  INFO -- : [6af76147-60ab-492b-a56d-9267783080fc]   Rendered desserts/new.html.erb within layouts/application (Duration: 7.4ms | Allocations: 2032)
+I, [2024-05-16T17:54:06.397421 #87282]  INFO -- : [6af76147-60ab-492b-a56d-9267783080fc]   Rendered layout layouts/application.html.erb (Duration: 8.3ms | Allocations: 2583)
+I, [2024-05-16T17:54:06.397669 #87282]  INFO -- : [6af76147-60ab-492b-a56d-9267783080fc] Completed 200 OK in 20ms (Views: 8.9ms | ActiveRecord: 1.5ms | Allocations: 6030)
+I, [2024-05-16T17:54:06.432076 #87282]  INFO -- : [60e6ef67-be08-44b7-8fb9-dfd2af3cd12f] Started GET "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.432611 #87282] FATAL -- : [60e6ef67-be08-44b7-8fb9-dfd2af3cd12f]   
+[60e6ef67-be08-44b7-8fb9-dfd2af3cd12f] ActionController::RoutingError (No route matches [GET] "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css"):
+[60e6ef67-be08-44b7-8fb9-dfd2af3cd12f]   
+I, [2024-05-16T17:54:06.433164 #87282]  INFO -- : [ca21d959-388c-4ed6-8ccd-2cf2501858ab] Started GET "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.433758 #87282] FATAL -- : [ca21d959-388c-4ed6-8ccd-2cf2501858ab]   
+[ca21d959-388c-4ed6-8ccd-2cf2501858ab] ActionController::RoutingError (No route matches [GET] "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js"):
+[ca21d959-388c-4ed6-8ccd-2cf2501858ab]   
+I, [2024-05-16T17:54:06.434529 #87282]  INFO -- : [50fd5c3e-da7d-4bd8-a5cc-594961007b81] Started GET "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.435319 #87282] FATAL -- : [50fd5c3e-da7d-4bd8-a5cc-594961007b81]   
+[50fd5c3e-da7d-4bd8-a5cc-594961007b81] ActionController::RoutingError (No route matches [GET] "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js"):
+[50fd5c3e-da7d-4bd8-a5cc-594961007b81]   
+I, [2024-05-16T17:54:06.435479 #87282]  INFO -- : [364ef335-514f-46b5-8028-ec62e9ea65fc] Started GET "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.435897 #87282] FATAL -- : [364ef335-514f-46b5-8028-ec62e9ea65fc]   
+[364ef335-514f-46b5-8028-ec62e9ea65fc] ActionController::RoutingError (No route matches [GET] "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js"):
+[364ef335-514f-46b5-8028-ec62e9ea65fc]   
+I, [2024-05-16T17:54:06.434099 #87282]  INFO -- : [721bc3b4-230f-486e-933d-36fc420f808f] Started GET "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.436477 #87282] FATAL -- : [721bc3b4-230f-486e-933d-36fc420f808f]   
+[721bc3b4-230f-486e-933d-36fc420f808f] ActionController::RoutingError (No route matches [GET] "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js"):
+[721bc3b4-230f-486e-933d-36fc420f808f]   
+I, [2024-05-16T17:54:06.638685 #87282]  INFO -- : [1a0acbe9-6b14-4940-b779-7d569837304f] Started GET "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js" for 127.0.0.1 at 2024-05-16 17:54:06 -0700
+F, [2024-05-16T17:54:06.639598 #87282] FATAL -- : [1a0acbe9-6b14-4940-b779-7d569837304f]   
+[1a0acbe9-6b14-4940-b779-7d569837304f] ActionController::RoutingError (No route matches [GET] "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js"):
+[1a0acbe9-6b14-4940-b779-7d569837304f]   
+I, [2024-05-16T17:54:11.757689 #87282]  INFO -- : [b0be8e32-ac48-4d95-ab36-b60ad6fe0e80] Started POST "/desserts" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+I, [2024-05-16T17:54:11.758903 #87282]  INFO -- : [b0be8e32-ac48-4d95-ab36-b60ad6fe0e80] Processing by DessertsController#create as HTML
+I, [2024-05-16T17:54:11.759192 #87282]  INFO -- : [b0be8e32-ac48-4d95-ab36-b60ad6fe0e80]   Parameters: {"authenticity_token"=>"[FILTERED]", "dessert"=>{"name"=>"Sweet"}, "commit"=>"Create Dessert"}
+I, [2024-05-16T17:54:11.764455 #87282]  INFO -- : [b0be8e32-ac48-4d95-ab36-b60ad6fe0e80] Redirected to http://0.0.0.0:3000/desserts/1
+I, [2024-05-16T17:54:11.764599 #87282]  INFO -- : [b0be8e32-ac48-4d95-ab36-b60ad6fe0e80] Completed 302 Found in 5ms (ActiveRecord: 1.6ms | Allocations: 1571)
+I, [2024-05-16T17:54:11.773392 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7] Started GET "/desserts/1" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+I, [2024-05-16T17:54:11.774557 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7] Processing by DessertsController#show as HTML
+I, [2024-05-16T17:54:11.774661 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7]   Parameters: {"id"=>"1"}
+I, [2024-05-16T17:54:11.783003 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7]   Rendered desserts/show.html.erb within layouts/application (Duration: 5.3ms | Allocations: 2433)
+I, [2024-05-16T17:54:11.783669 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7]   Rendered layout layouts/application.html.erb (Duration: 6.0ms | Allocations: 2975)
+I, [2024-05-16T17:54:11.783847 #87282]  INFO -- : [4bb17e59-eac6-43c5-befd-583035f6efd7] Completed 200 OK in 9ms (Views: 5.5ms | ActiveRecord: 1.0ms | Allocations: 3786)
+I, [2024-05-16T17:54:11.814679 #87282]  INFO -- : [98320572-1b24-4c11-b4e2-4ed9938d7e12] Started GET "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+F, [2024-05-16T17:54:11.815569 #87282] FATAL -- : [98320572-1b24-4c11-b4e2-4ed9938d7e12]   
+[98320572-1b24-4c11-b4e2-4ed9938d7e12] ActionController::RoutingError (No route matches [GET] "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css"):
+[98320572-1b24-4c11-b4e2-4ed9938d7e12]   
+I, [2024-05-16T17:54:11.816002 #87282]  INFO -- : [502ba1cb-a44a-491b-b5ae-43be894b359a] Started GET "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+F, [2024-05-16T17:54:11.816531 #87282] FATAL -- : [502ba1cb-a44a-491b-b5ae-43be894b359a]   
+[502ba1cb-a44a-491b-b5ae-43be894b359a] ActionController::RoutingError (No route matches [GET] "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js"):
+[502ba1cb-a44a-491b-b5ae-43be894b359a]   
+I, [2024-05-16T17:54:11.817214 #87282]  INFO -- : [ea352c73-8e82-439b-80b8-e43e5bbf1949] Started GET "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+F, [2024-05-16T17:54:11.817523 #87282] FATAL -- : [ea352c73-8e82-439b-80b8-e43e5bbf1949]   
+[ea352c73-8e82-439b-80b8-e43e5bbf1949] ActionController::RoutingError (No route matches [GET] "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js"):
+[ea352c73-8e82-439b-80b8-e43e5bbf1949]   
+I, [2024-05-16T17:54:11.817705 #87282]  INFO -- : [c8991102-699b-48f9-9c41-d9d799e12907] Started GET "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+F, [2024-05-16T17:54:11.818319 #87282] FATAL -- : [c8991102-699b-48f9-9c41-d9d799e12907]   
+[c8991102-699b-48f9-9c41-d9d799e12907] ActionController::RoutingError (No route matches [GET] "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js"):
+[c8991102-699b-48f9-9c41-d9d799e12907]   
+I, [2024-05-16T17:54:11.816825 #87282]  INFO -- : [6bd46cdb-3926-41c3-9815-5d0e0a8f80f4] Started GET "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js" for 127.0.0.1 at 2024-05-16 17:54:11 -0700
+F, [2024-05-16T17:54:11.818855 #87282] FATAL -- : [6bd46cdb-3926-41c3-9815-5d0e0a8f80f4]   
+[6bd46cdb-3926-41c3-9815-5d0e0a8f80f4] ActionController::RoutingError (No route matches [GET] "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js"):
+[6bd46cdb-3926-41c3-9815-5d0e0a8f80f4]   
+I, [2024-05-16T17:54:12.022262 #87282]  INFO -- : [4be789fe-466d-4d2f-aedd-ca4ab7135b1c] Started GET "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js" for 127.0.0.1 at 2024-05-16 17:54:12 -0700
+F, [2024-05-16T17:54:12.022984 #87282] FATAL -- : [4be789fe-466d-4d2f-aedd-ca4ab7135b1c]   
+[4be789fe-466d-4d2f-aedd-ca4ab7135b1c] ActionController::RoutingError (No route matches [GET] "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js"):
+[4be789fe-466d-4d2f-aedd-ca4ab7135b1c]   
+I, [2024-05-16T17:54:14.510415 #87282]  INFO -- : [5d77eb47-d6a1-4e78-bca4-5593e33db23f] Started DELETE "/desserts/1" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+I, [2024-05-16T17:54:14.511660 #87282]  INFO -- : [5d77eb47-d6a1-4e78-bca4-5593e33db23f] Processing by DessertsController#destroy as HTML
+I, [2024-05-16T17:54:14.511840 #87282]  INFO -- : [5d77eb47-d6a1-4e78-bca4-5593e33db23f]   Parameters: {"authenticity_token"=>"[FILTERED]", "id"=>"1"}
+I, [2024-05-16T17:54:14.517616 #87282]  INFO -- : [5d77eb47-d6a1-4e78-bca4-5593e33db23f] Redirected to http://0.0.0.0:3000/desserts
+I, [2024-05-16T17:54:14.517755 #87282]  INFO -- : [5d77eb47-d6a1-4e78-bca4-5593e33db23f] Completed 302 Found in 6ms (ActiveRecord: 2.9ms | Allocations: 692)
+I, [2024-05-16T17:54:14.526753 #87282]  INFO -- : [6294ec59-3c74-41b3-87ab-45d74f7597ad] Started GET "/desserts" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+I, [2024-05-16T17:54:14.527829 #87282]  INFO -- : [6294ec59-3c74-41b3-87ab-45d74f7597ad] Processing by DessertsController#index as HTML
+I, [2024-05-16T17:54:14.530270 #87282]  INFO -- : [6294ec59-3c74-41b3-87ab-45d74f7597ad]   Rendered desserts/index.html.erb within layouts/application (Duration: 1.6ms | Allocations: 288)
+I, [2024-05-16T17:54:14.531752 #87282]  INFO -- : [6294ec59-3c74-41b3-87ab-45d74f7597ad]   Rendered layout layouts/application.html.erb (Duration: 3.1ms | Allocations: 836)
+I, [2024-05-16T17:54:14.532050 #87282]  INFO -- : [6294ec59-3c74-41b3-87ab-45d74f7597ad] Completed 200 OK in 4ms (Views: 3.4ms | ActiveRecord: 0.3ms | Allocations: 1040)
+I, [2024-05-16T17:54:14.564439 #87282]  INFO -- : [c6621246-3b8b-45ad-9140-13edfcf3d3ce] Started GET "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.565774 #87282] FATAL -- : [c6621246-3b8b-45ad-9140-13edfcf3d3ce]   
+[c6621246-3b8b-45ad-9140-13edfcf3d3ce] ActionController::RoutingError (No route matches [GET] "/assets/application-e0cf9d8fcb18bf7f909d8d91a5e78499f82ac29523d475bf3a9ab265d5e2b451.css"):
+[c6621246-3b8b-45ad-9140-13edfcf3d3ce]   
+I, [2024-05-16T17:54:14.566244 #87282]  INFO -- : [ccf0d75f-8d5b-4914-81c6-950d0bc49a0c] Started GET "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.566790 #87282] FATAL -- : [ccf0d75f-8d5b-4914-81c6-950d0bc49a0c]   
+[ccf0d75f-8d5b-4914-81c6-950d0bc49a0c] ActionController::RoutingError (No route matches [GET] "/assets/es-module-shims.min-d89e73202ec09dede55fb74115af9c5f9f2bb965433de1c2446e1faa6dac2470.js"):
+[ccf0d75f-8d5b-4914-81c6-950d0bc49a0c]   
+I, [2024-05-16T17:54:14.567489 #87282]  INFO -- : [0fde4cd0-8f44-4023-839c-736488acaf0a] Started GET "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.568384 #87282] FATAL -- : [0fde4cd0-8f44-4023-839c-736488acaf0a]   
+[0fde4cd0-8f44-4023-839c-736488acaf0a] ActionController::RoutingError (No route matches [GET] "/assets/stimulus-loading-1fc59770fb1654500044afd3f5f6d7d00800e5be36746d55b94a2963a7a228aa.js"):
+[0fde4cd0-8f44-4023-839c-736488acaf0a]   
+I, [2024-05-16T17:54:14.568912 #87282]  INFO -- : [76f71d8c-960f-4e26-81b7-b63457800747] Started GET "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.569334 #87282] FATAL -- : [76f71d8c-960f-4e26-81b7-b63457800747]   
+[76f71d8c-960f-4e26-81b7-b63457800747] ActionController::RoutingError (No route matches [GET] "/assets/turbo.min-f309baafa3ae5ad6ccee3e7362118b87678d792db8e8ab466c4fa284dd3a4700.js"):
+[76f71d8c-960f-4e26-81b7-b63457800747]   
+I, [2024-05-16T17:54:14.568015 #87282]  INFO -- : [8c8a15ef-fcd0-426e-8293-aca46bfbbe00] Started GET "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.569975 #87282] FATAL -- : [8c8a15ef-fcd0-426e-8293-aca46bfbbe00]   
+[8c8a15ef-fcd0-426e-8293-aca46bfbbe00] ActionController::RoutingError (No route matches [GET] "/assets/stimulus.min-d03cf1dff41d6c5698ec2c5d6a501615a7a33754dbeef8d1edd31c928d17c652.js"):
+[8c8a15ef-fcd0-426e-8293-aca46bfbbe00]   
+I, [2024-05-16T17:54:14.774438 #87282]  INFO -- : [058a48a7-7e02-4d56-8705-65959301facf] Started GET "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js" for 127.0.0.1 at 2024-05-16 17:54:14 -0700
+F, [2024-05-16T17:54:14.775653 #87282] FATAL -- : [058a48a7-7e02-4d56-8705-65959301facf]   
+[058a48a7-7e02-4d56-8705-65959301facf] ActionController::RoutingError (No route matches [GET] "/assets/application-37f365cbecf1fa2810a8303f4b6571676fa1f9c56c248528bc14ddb857531b95.js"):
+[058a48a7-7e02-4d56-8705-65959301facf]   
