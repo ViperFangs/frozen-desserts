@@ -1,4 +1,38 @@
-name: Placeholder
+name: CI/CD Pipeline
 
 on:
+  push:
+    branches:
+      - main
   workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Ruby
+        uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 3.2.1
+
+      - name: Install dependencies
+        run: |
+          gem install bundler
+          bundle install
+
+      - name: Prepare database
+        env:
+          RAILS_ENV: test
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
+
+      - name: Run tests
+        env:
+          RAILS_ENV: test
+        run: |
+          bundle exec rspec
