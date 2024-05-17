@@ -39,7 +39,7 @@ rvm use 3.2.1 --default
 
 # Install Bundler and Rails
 gem install bundler
-gem install rails
+gem install rails -v 7.0.8.1
 
 # Clone the application repository
 sudo git clone https://github.com/viperfangs/frozen-desserts.git /var/www/frozen-desserts
