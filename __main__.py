@@ -89,6 +89,15 @@ server {
 }
 EOF
 
+# Verify Nginx configuration file
+if [ -f /etc/nginx/conf.d/frozen-desserts.conf ]; then
+    echo "Nginx configuration file created successfully:"
+    cat /etc/nginx/conf.d/frozen-desserts.conf
+else
+    echo "Failed to create Nginx configuration file."
+    exit 1
+fi
+
 # Test Nginx configuration
 nginx -t
 
