@@ -5,31 +5,11 @@ import base64
 config = pulumi.Config()
 db_username = config.require("dbUsername")
 db_password = config.require("dbPassword")
+rds_instance_id = config.require("rdsInstanceId")
 
 # Read the user_data script
 with open('user_data.sh', 'r') as user_data_file:
     user_data_script = user_data_file.read()
-
-# Create a security group for RDS
-rds_security_group = aws.ec2.SecurityGroup('frozen-desserts-rds-sg',
-    description='Allow database traffic',
-    ingress=[
-        {
-            'protocol': 'tcp',
-            'from_port': 5432,  # Accept Database Messages on the default port of Postgres
-            'to_port': 5432,
-            'cidr_blocks': ['0.0.0.0/0'],
-        },
-    ],
-    egress=[
-        {
-            'protocol': '-1',
-            'from_port': 0,
-            'to_port': 0,
-            'cidr_blocks': ['0.0.0.0/0'],
-        },
-    ]
-)
 
 # Create a security group
 security_group = aws.ec2.SecurityGroup('frozen-desserts-sg',
@@ -53,12 +33,6 @@ security_group = aws.ec2.SecurityGroup('frozen-desserts-sg',
             'to_port': 443,
             'cidr_blocks': ['0.0.0.0/0'],
         },
-        {
-            'protocol': 'tcp',
-            'from_port': 3000,
-            'to_port': 3000,
-            'cidr_blocks': ['0.0.0.0/0'],
-        },
     ],
     egress=[
         {
@@ -73,21 +47,10 @@ security_group = aws.ec2.SecurityGroup('frozen-desserts-sg',
 # Create an S3 bucket
 bucket = aws.s3.Bucket('frozen-desserts-bucket')
 
-# Create an RDS instance
-rds_instance = aws.rds.Instance('frozen-desserts-db',
-    allocated_storage=10,
-    engine='postgres',
-    instance_class='db.t3.micro',
-    db_name='frozenDessertsDB',
-    username=db_username,
-    password=db_password,
-    vpc_security_group_ids=[rds_security_group.id],
-    deletion_protection=True,
-    publicly_accessible=True,
-    skip_final_snapshot=True
-)
+# Reference an existing RDS instance
+rds_instance = aws.rds.Instance.get("frozen-desserts-db", rds_instance_id)
 
-user_data = pulumi.Output.all(db_username, db_password, rds_instance.endpoint).apply(
+user_data = pulumi.Output.all(db_username, db_password, rds_instance.address).apply(
     lambda args: user_data_script
                   .replace("${DB_USERNAME}", args[0])
                   .replace("${DB_PASSWORD}", args[1])
