@@ -3,17 +3,14 @@
 sudo yum update -y
 
 # Install dependencies
-sudo yum install -y curl gpg gcc gcc-c++ make git
-
-# Install GPG v2
-sudo yum install -y gnupg2
+sudo yum install -y curl gpg gcc gcc-c++ make git gnupg2
 
 # Import the required GPG keys
-command curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
-command curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
+curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
+curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
 
 # Install RVM
-\curl -sSL https://get.rvm.io | bash -s stable
+curl -sSL https://get.rvm.io | bash -s stable
 
 # Load RVM
 source /etc/profile.d/rvm.sh
@@ -27,11 +24,16 @@ export HOME=/home/ec2-user
 cd $HOME
 
 # Clone the repository
-git clone https://github.com/Viperfangs/frozen-desserts.git /home/ec2-user/frozen-desserts
+git clone https://github.com/viperfangs/frozen-desserts.git /home/ec2-user/frozen-desserts
 cd /home/ec2-user/frozen-desserts
 
 # Install Bundler Gem
 gem install bundler
+
+# Set environment variables for database (these will be replaced by Pulumi)
+export DB_USERNAME="${DB_USERNAME}"
+export DB_PASSWORD="${DB_PASSWORD}"
+export DB_HOST="${DB_HOST}"
 
 # Set up the Rails app
 bundle install
