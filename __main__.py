@@ -70,8 +70,7 @@ instance = aws.ec2.Instance('frozen-desserts-instance',
                             tags={"Name": "frozen-desserts-server"})
 
 # Create an Elastic IP
-elastic_ip = aws.ec2.Eip('frozen-desserts-eip', 
-                         opts=pulumi.ResourceOptions(ignore_changes=["instance"]))
+elastic_ip = aws.ec2.Eip('frozen-desserts-eip')
 
 # Associate the Elastic IP with the EC2 instance
 eip_association = aws.ec2.EipAssociation('frozen-desserts-eip-association',
