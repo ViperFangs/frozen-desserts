@@ -24,13 +24,13 @@ jobs:
           gem install bundler
           bundle install
 
-      # - name: Prepare database
-      #   env:
-      #     RAILS_ENV: test
-      #     RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
-      #   run: |
-      #     bin/rails db:create
-      #     bin/rails db:schema:load
+      - name: Prepare database
+        env:
+          RAILS_ENV: test
+          RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY }}
+        run: |
+          bin/rails db:create
+          bin/rails db:schema:load
 
       - name: Run tests
         env:
