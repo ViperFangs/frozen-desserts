@@ -3,8 +3,8 @@ import pulumi_aws as aws
 import base64
 
 config = pulumi.Config()
-db_username = config.require("dbUsername")
-db_password = config.require("dbPassword")
+db_username = config.require_secret("dbUsername")
+db_password = config.require_secret("dbPassword")
 rds_instance_id = config.require("rdsInstanceId")
 
 # Read the user_data script
