@@ -3,8 +3,7 @@
 #   Ensure the postgres gem is defined in your Gemfile
 #   gem "pg"
 #
-production:
-  default: &default
+default: &default
   adapter: postgresql
   encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
@@ -14,16 +13,15 @@ production:
 
 development:
   <<: *default
-  database: db/frozen_desserts_development
+  database: frozen_desserts_development
 
 test:
   <<: *default
-  database: db/frozen_desserts_test
+  database: frozen_desserts_test
 
 production:
   <<: *default
-  database: db/frozen_desserts_production
-
+  database: frozen_desserts_production
 # SQLite. Versions 3.8.0 and up are supported.
 #   gem install sqlite3
 #
