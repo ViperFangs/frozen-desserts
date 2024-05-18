@@ -8,8 +8,8 @@ sudo yum install -y curl gpg gcc gcc-c++ make git gnupg2
 # Remove old versions of PostgreSQL
 sudo yum remove -y postgresql*
 
-# Add the PostgreSQL 12 repository
-sudo amazon-linux-extras enable postgresql12
+# Add the PostgreSQL 14 repository
+sudo amazon-linux-extras enable postgresql14
 sudo yum clean metadata
 sudo yum install -y postgresql postgresql-devel
 
