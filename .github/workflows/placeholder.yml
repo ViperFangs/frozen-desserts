@@ -69,9 +69,8 @@ jobs:
         env:
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
         run: |
-          pulumi config set frozen-desserts:dbUsername ${{ secrets.DB_USERNAME }}
-          pulumi config set frozen-desserts:dbPassword ${{ secrets.DB_PASSWORD }} --plaintext
-          pulumi config set frozen-desserts:dbHost ${{ secrets.DB_HOST }}
+          pulumi config set frozen-desserts:dbUsername ${{ secrets.DB_USERNAME }} --secret
+          pulumi config set frozen-desserts:dbPassword ${{ secrets.DB_PASSWORD }} --secret
           pulumi config set frozen-desserts:rdsInstanceId ${{ secrets.RDS_INSTANCE_ID }}
 
       - name: Deploy with Pulumi
