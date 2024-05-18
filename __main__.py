@@ -7,9 +7,9 @@ db_username = config.require_secret("dbUsername")
 db_password = config.require_secret("dbPassword")
 rds_instance_id = config.require("rdsInstanceId")
 
-# Read the user_data script
-with open('user_data.sh', 'r') as user_data_file:
-    user_data_script = user_data_file.read()
+# Read the deploy script
+with open('deploy.sh', 'r') as deploy_file:
+    deploy_script = deploy_file.read()
 
 # Create a security group
 security_group = aws.ec2.SecurityGroup('frozen-desserts-sg',
@@ -50,8 +50,8 @@ bucket = aws.s3.Bucket('frozen-desserts-bucket')
 # Reference an existing RDS instance
 rds_instance = aws.rds.Instance.get("frozen-desserts-db", rds_instance_id)
 
-user_data = pulumi.Output.all(db_username, db_password, rds_instance.address).apply(
-    lambda args: user_data_script
+deploy = pulumi.Output.all(db_username, db_password, rds_instance.address).apply(
+    lambda args: deploy_script
                   .replace("${DB_USERNAME}", args[0])
                   .replace("${DB_PASSWORD}", args[1])
                   .replace("${DB_HOST}", args[2])
@@ -67,7 +67,7 @@ instance = aws.ec2.Instance('frozen-desserts-instance',
                             instance_type='t2.micro',
                             ami=ami.id,
                             security_groups=[security_group.name],
-                            user_data=user_data.apply(lambda script: base64.b64encode(script.encode('utf-8')).decode('utf-8')),
+                            user_data=deploy.apply(lambda script: base64.b64encode(script.encode('utf-8')).decode('utf-8')),
                             tags={"Name": "frozen-desserts-server"})
 
 # Create an Elastic IP
