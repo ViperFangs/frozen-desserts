@@ -5,6 +5,14 @@ sudo yum update -y
 # Install dependencies
 sudo yum install -y curl gpg gcc gcc-c++ make git gnupg2
 
+# Remove old versions of PostgreSQL
+sudo yum remove -y postgresql*
+
+# Add the PostgreSQL 12 repository
+sudo amazon-linux-extras enable postgresql12
+sudo yum clean metadata
+sudo yum install -y postgresql postgresql-devel
+
 # Import the required GPG keys
 curl -sSL https://rvm.io/mpapis.asc | gpg2 --import -
 curl -sSL https://rvm.io/pkuczynski.asc | gpg2 --import -
@@ -37,5 +45,6 @@ export DB_HOST="${DB_HOST}"
 
 # Set up the Rails app
 bundle install
+rails db:create
 rails db:migrate
-rails server -b 0.0.0.0 -p 3000 &
+rails server -b 0.0.0.0 -p 80 &
