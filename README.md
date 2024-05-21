@@ -8,7 +8,7 @@ This project is an example on how to deploy a small Rails application on Amazon 
    The repository was forked from [https://github.com/strongmind/frozen-desserts](https://github.com/strongmind/frozen-desserts).
 2. **Automatic Deployment using Github Actions and Pulumi**  
    The application deploys automatically to Amazon Web Services(AWS) from GitHub using GitHub Actions every time the main branch is updated.
-3. **Fail Deployment on Failure**  
+3. **Fail Deployment on Test Failure**  
    The application runs the specs and fails to deploy if the specs fail.
 4. **Available via HTTP**  
    The application is accessible from the internet via HTTP.
